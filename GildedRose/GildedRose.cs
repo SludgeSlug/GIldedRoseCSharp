@@ -24,29 +24,33 @@ public class GildedRose
             if (item.Name != ItemNames.AgedBrie && item.Name != ItemNames.BackstagePass)
             {
                 item.Depreciate();
-            }
-            else
-            {
-                if (item.Quality < MaxQuality)
+                item.SellIn--;
+                if (item.SellIn < 0)
                 {
-                    item.Quality++;
+                    item.Depreciate();
+                }
+                continue;
+            }
 
-                    if (item.Name == ItemNames.BackstagePass)
+            if (item.Quality < MaxQuality)
+            {
+                item.Quality++;
+
+                if (item.Name == ItemNames.BackstagePass)
+                {
+                    if (item.SellIn < 11)
                     {
-                        if (item.SellIn < 11)
+                        if (item.Quality < MaxQuality)
                         {
-                            if (item.Quality < MaxQuality)
-                            {
-                                item.Quality++;
-                            }
+                            item.Quality++;
                         }
+                    }
 
-                        if (item.SellIn < 6)
+                    if (item.SellIn < 6)
+                    {
+                        if (item.Quality < MaxQuality)
                         {
-                            if (item.Quality < MaxQuality)
-                            {
-                                item.Quality++;
-                            }
+                            item.Quality++;
                         }
                     }
                 }
