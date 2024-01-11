@@ -23,10 +23,7 @@ public class GildedRose
 
             if (item.Name != ItemNames.AgedBrie && item.Name != ItemNames.BackstagePass)
             {
-                if (item.Quality > 0)
-                {
-                    item.Quality--;
-                }
+                item.Depreciate();
             }
             else
             {
@@ -63,10 +60,7 @@ public class GildedRose
                 {
                     if (item.Name != ItemNames.BackstagePass)
                     {
-                        if (item.Quality > 0)
-                        {
-                            item.Quality--;
-                        }
+                        item.Depreciate();
                     }
                     else
                     {
