@@ -98,6 +98,28 @@ public class GildedRoseTest
         Assert.That(item.Quality, Is.EqualTo(0));
     }
 
+    [Test]
+    public void AgedBrie_IncreasesInQuality_WhenSellInIsAboveZero()
+    {
+        var items = GetSingleItemList(ItemNames.AgedBrie, 1, 40);
+        UpdateQuality(items);
+
+        var item = items.First();
+
+        Assert.That(item.Quality, Is.EqualTo(41));
+    }
+
+    [Test]
+    public void AgedBrie_IncreasesInQualityByTwo_WhenSellInIsLessThanZero()
+    {
+        var items = GetSingleItemList(ItemNames.AgedBrie, -1, 40);
+        UpdateQuality(items);
+
+        var item = items.First();
+
+        Assert.That(item.Quality, Is.EqualTo(42));
+    }
+
     private static List<Item> GetSingleItemList(string name, int sellIn, int quality) =>
         new() { new() { Name = name, SellIn = sellIn, Quality = quality } };
 

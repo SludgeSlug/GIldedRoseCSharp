@@ -5,7 +5,6 @@ namespace GildedRoseKata;
 public class GildedRose
 {
     private readonly IList<Item> _items;
-    private const int MaxQuality = 50;
 
     public GildedRose(IList<Item> items)
     {
@@ -21,22 +20,21 @@ public class GildedRose
                 continue;
             }
 
-            if (item.Name != ItemNames.AgedBrie && item.Name != ItemNames.BackstagePass)
+            if (item.Name.Equals(ItemNames.AgedBrie))
             {
-                item.Depreciate();
+                item.Apreciate();
                 item.SellIn--;
-                if (item.SellIn < 0)
+                if(item.SellIn < 0)
                 {
-                    item.Depreciate();
+                    item.Apreciate();
                 }
                 continue;
             }
 
-            item.Apreciate();
-            item.SellIn--;
-
-            if (item.Name == ItemNames.BackstagePass)
+            if (item.Name.Equals(ItemNames.BackstagePass))
             {
+                item.Apreciate();
+                item.SellIn--;
                 if (item.SellIn < 0)
                 {
                     item.Quality = 0;
@@ -50,11 +48,14 @@ public class GildedRose
                 {
                     item.Apreciate();
                 }
+                continue;
             }
 
-            if (item.SellIn < 0 && item.Name == ItemNames.AgedBrie)
+            item.Depreciate();
+            item.SellIn--;
+            if (item.SellIn < 0)
             {
-                item.Apreciate();
+                item.Depreciate();
             }
         }
     }
