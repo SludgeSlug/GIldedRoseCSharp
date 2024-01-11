@@ -20,5 +20,21 @@ namespace GildedRoseTests
             item.Depreciate();
             Assert.That(item.Quality, Is.EqualTo(0));
         }
+
+        [Test]
+        public void Apreciate_IncreasesQuality_ByOne()
+        {
+            var item = new Item { Quality = 0 };
+            item.Apreciate();
+            Assert.That(item.Quality, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void Apreciate_DoesNotExceedMaxQuality()
+        {
+            var item = new Item { Quality = 50 };
+            item.Apreciate();
+            Assert.That(item.Quality, Is.EqualTo(50));
+        }
     }
 }
