@@ -1,6 +1,7 @@
 ﻿using GildedRoseKata;
 using GildedRoseKata.QualityUpdaters;
 using NUnit.Framework;
+using System;
 
 namespace GildedRoseTests
 {
@@ -36,6 +37,13 @@ namespace GildedRoseTests
             var item = new Item { Name = "SomethingElse" };
             var updater = QualityUpdaterFactory.CreateQualityUpdater(item);
             Assert.That(updater, Is.InstanceOf<StandardItemQualityUpdater>());
+        }
+
+        public void ReturnsConjuredItemQualityUpdater_ForConjuredItem()
+        {
+            var item = new Item { Name = ItemNames.Conjured };
+            var updater = QualityUpdaterFactory.CreateQualityUpdater(item);
+            Assert.That(updater, Is.InstanceOf<ConjuredItemQualityUpdater>());
         }
     }
 }

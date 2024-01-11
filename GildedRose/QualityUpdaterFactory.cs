@@ -12,6 +12,7 @@ namespace GildedRoseKata
                 ItemNames.AgedBrie => new AgedBrieQualityUpdater(),
                 ItemNames.BackstagePass => new BackstagePassQualityUpdater(),
                 ItemNames.Sulfuras => new SulfurasQualityUpdater(),
+                ItemNames.Conjured => new ConjuredItemQualityUpdater(),
                 _ => new StandardItemQualityUpdater(),
             };
         }
