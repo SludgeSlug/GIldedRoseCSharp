@@ -32,52 +32,29 @@ public class GildedRose
                 continue;
             }
 
-            if (item.Quality < MaxQuality)
+            item.Apreciate();
+            item.SellIn--;
+
+            if (item.Name == ItemNames.BackstagePass)
             {
-                item.Quality++;
-
-                if (item.Name == ItemNames.BackstagePass)
+                if (item.SellIn < 0)
                 {
-                    if (item.SellIn < 11)
-                    {
-                        if (item.Quality < MaxQuality)
-                        {
-                            item.Quality++;
-                        }
-                    }
-
-                    if (item.SellIn < 6)
-                    {
-                        if (item.Quality < MaxQuality)
-                        {
-                            item.Quality++;
-                        }
-                    }
+                    item.Quality = 0;
+                    continue;
+                }
+                if (item.SellIn < 10)
+                {
+                    item.Apreciate();
+                }
+                if (item.SellIn < 5)
+                {
+                    item.Apreciate();
                 }
             }
 
-            item.SellIn--;
-
-            if (item.SellIn < 0)
+            if (item.SellIn < 0 && item.Name == ItemNames.AgedBrie)
             {
-                if (item.Name != ItemNames.AgedBrie)
-                {
-                    if (item.Name != ItemNames.BackstagePass)
-                    {
-                        item.Depreciate();
-                    }
-                    else
-                    {
-                        item.Quality -= item.Quality;
-                    }
-                }
-                else
-                {
-                    if (item.Quality < MaxQuality)
-                    {
-                        item.Quality++;
-                    }
-                }
+                item.Apreciate();
             }
         }
     }
