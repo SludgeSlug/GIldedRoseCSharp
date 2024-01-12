@@ -4,13 +4,14 @@
     {
         public void UpdateQuality(Item item)
         {
-            item.Depreciate();
-            item.Depreciate();
             item.SellIn--;
             if (item.SellIn < 0)
             {
-                item.Depreciate();
-                item.Depreciate();
+                item.Depreciate(4);
+            }
+            else
+            {
+                item.Depreciate(2);
             }
         }
     }

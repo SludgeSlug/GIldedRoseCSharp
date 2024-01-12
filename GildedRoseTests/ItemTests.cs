@@ -22,6 +22,14 @@ namespace GildedRoseTests
         }
 
         [Test]
+        public void Depreciate_DecreasesByDeclaredFactor()
+        {
+            var item = new Item { Quality = 3 };
+            item.Depreciate(2);
+            Assert.That(item.Quality, Is.EqualTo(1));
+        }
+
+        [Test]
         public void Apreciate_IncreasesQuality_ByOne()
         {
             var item = new Item { Quality = 0 };
